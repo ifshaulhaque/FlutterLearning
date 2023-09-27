@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/navigation/routes.dart';
+import 'package:flutter_demo/pages/signup_signin/get_started.dart';
 import 'package:flutter_demo/pages/splash.dart';
 
 void main() {
@@ -11,9 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: Routes.splashScreen,
       routes: {
-        '/': (context) => const SplashScreen(),
+        Routes.splashScreen: (context) => const SplashScreen(),
+        Routes.getStartedScreen: (context) => const GetStarted(),
       },
     );
   }
