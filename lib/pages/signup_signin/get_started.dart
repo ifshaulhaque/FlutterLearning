@@ -16,16 +16,9 @@ class GetStarted extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    HeadingText(
-                      text: "Get Started",
-                    ),
-                    const Text(
-                      "Start with sign up or sign in",
-                    ),
-                  ],
+                child: HeadingText(
+                  heading: "Get Started",
+                  subHeading: "Start with sign up or sign in",
                 ),
               ),
               Expanded(
