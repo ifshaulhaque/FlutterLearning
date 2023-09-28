@@ -4,9 +4,15 @@ import 'package:flutter_demo/components/heading_text.dart';
 import 'package:flutter_demo/components/primary_button.dart';
 import 'package:flutter_demo/components/primary_text_field.dart';
 import 'package:flutter_demo/components/text_last_clickable.dart';
+import 'package:flutter_demo/utils/text_utils.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  SignUp({super.key});
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,34 +32,62 @@ class SignUp extends StatelessWidget {
                 subHeading: "Hello! let's join with us",
               ),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    PrimaryTextField(
-                      placeholder: "Email",
-                      prefixIcon: Icons.email,
-                    ),
-                    PrimaryTextField(
-                      placeholder: "Password",
-                      prefixIcon: Icons.key,
-                      obscureText: true,
-                      visibilityIcon: true,
-                    ),
-                    PrimaryTextField(
-                      placeholder: "Confirm Password",
-                      prefixIcon: Icons.key,
-                      obscureText: true,
-                      visibilityIcon: true,
-                    ),
-                    CheckboxSuffixText(
-                      suffixText: "I agree with Privacy Policy",
-                    ),
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      PrimaryTextField(
+                        placeholder: "Email",
+                        prefixIcon: Icons.email,
+                        textEditingController: emailController,
+                        validator: (value) {
+                          if (!TextUtils.isValidEmail(value)) {
+                            return "invalid Email Id";
+                          }
+                          return null;
+                        },
+                      ),
+                      PrimaryTextField(
+                        placeholder: "Password",
+                        prefixIcon: Icons.key,
+                        obscureText: true,
+                        visibilityIcon: true,
+                        textEditingController: passwordController,
+                        validator: (value) {
+                          if (value != null && value.length < 8) {
+                            return "minimum 8 digit required";
+                          }
+                          return null;
+                        },
+                      ),
+                      PrimaryTextField(
+                        placeholder: "Confirm Password",
+                        prefixIcon: Icons.key,
+                        obscureText: true,
+                        visibilityIcon: true,
+                        textEditingController: confirmPasswordController,
+                        validator: (value) {
+                          if (passwordController.value.text != value) {
+                            return "password and confirm password not matched";
+                          }
+                          return null;
+                        },
+                      ),
+                      CheckboxSuffixText(
+                        suffixText: "I agree with Privacy Policy",
+                      ),
+                    ],
+                  ),
                 ),
               ),
               PrimaryButton(
                 text: "Sign Up",
-                onClick: () {},
+                onClick: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+
+                  }
+                },
               ),
               Container(
                 height: 100,

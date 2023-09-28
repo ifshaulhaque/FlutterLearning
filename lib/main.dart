@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Routes.splashScreen: (context) => const SplashScreen(),
         Routes.getStartedScreen: (context) => const GetStarted(),
-        Routes.signUpScreen: (context) => const SignUp(),
+        Routes.signUpScreen: (context) => SignUp(),
       },
     );
   }

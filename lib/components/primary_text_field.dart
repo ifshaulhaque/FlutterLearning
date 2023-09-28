@@ -5,7 +5,9 @@ class PrimaryTextField extends StatefulWidget {
   IconData? prefixIcon;
   bool obscureText;
   bool visibilityIcon;
-  PrimaryTextField({super.key, this.placeholder, this.prefixIcon, this.obscureText = false, this.visibilityIcon = false});
+  String? Function(String?)? validator;
+  TextEditingController textEditingController;
+  PrimaryTextField({super.key, this.placeholder, this.prefixIcon, this.obscureText = false, this.visibilityIcon = false, this.validator, required this.textEditingController});
 
   @override
   State<PrimaryTextField> createState() => _PrimaryTextFieldState();
@@ -18,8 +20,9 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
       padding: const EdgeInsets.symmetric(
         vertical: 8,
       ),
-      child: TextField(
+      child: TextFormField(
         maxLines: 1,
+        controller: widget.textEditingController,
         textAlign: TextAlign.start,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
@@ -42,6 +45,7 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
             vertical: 0,
           ),
         ),
+        validator: widget.validator,
       ),
     );
   }
