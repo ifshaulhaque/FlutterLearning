@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class PrimaryButton extends StatelessWidget {
   String text;
   bool isTextCapital;
-  PrimaryButton({super.key, this.isTextCapital = false, required this.text});
+  Function() onClick;
+  PrimaryButton({super.key, this.isTextCapital = false, required this.text, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class PrimaryButton extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: onClick,
         style: OutlinedButton.styleFrom(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(

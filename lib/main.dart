@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/navigation/routes.dart';
 import 'package:flutter_demo/pages/signup_signin/get_started.dart';
+import 'package:flutter_demo/pages/signup_signin/sign_up.dart';
 import 'package:flutter_demo/pages/splash.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Routes.splashScreen: (context) => const SplashScreen(),
         Routes.getStartedScreen: (context) => const GetStarted(),
+        Routes.signUpScreen: (context) => const SignUp(),
       },
     );
   }
