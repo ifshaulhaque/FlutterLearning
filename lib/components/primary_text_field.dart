@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-class PrimaryTextField extends StatelessWidget {
+class PrimaryTextField extends StatefulWidget {
   String? placeholder;
   IconData? prefixIcon;
-  PrimaryTextField({super.key, this.placeholder, this.prefixIcon});
+  bool obscureText;
+  bool visibilityIcon;
+  PrimaryTextField({super.key, this.placeholder, this.prefixIcon, this.obscureText = false, this.visibilityIcon = false});
 
+  @override
+  State<PrimaryTextField> createState() => _PrimaryTextFieldState();
+}
+
+class _PrimaryTextFieldState extends State<PrimaryTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,9 +21,20 @@ class PrimaryTextField extends StatelessWidget {
       child: TextField(
         maxLines: 1,
         textAlign: TextAlign.start,
+        obscureText: widget.obscureText,
         decoration: InputDecoration(
-          hintText: placeholder ?? "",
-          prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+          hintText: widget.placeholder ?? "",
+          prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
+          suffixIcon: widget.visibilityIcon ? InkWell(
+            onTap: () {
+              setState(() {
+                widget.obscureText = !widget.obscureText;
+              });
+            },
+            child: Icon(
+              widget.obscureText ? Icons.visibility_off : Icons.visibility,
+            ),
+          ) : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
           ),

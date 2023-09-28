@@ -36,10 +36,14 @@ class SignUp extends StatelessWidget {
                     PrimaryTextField(
                       placeholder: "Password",
                       prefixIcon: Icons.key,
+                      obscureText: true,
+                      visibilityIcon: true,
                     ),
                     PrimaryTextField(
                       placeholder: "Confirm Password",
                       prefixIcon: Icons.key,
+                      obscureText: true,
+                      visibilityIcon: true,
                     ),
                     CheckboxSuffixText(
                       suffixText: "I agree with Privacy Policy",
