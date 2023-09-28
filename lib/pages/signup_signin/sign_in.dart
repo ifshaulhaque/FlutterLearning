@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/components/checkbox_suffix_text.dart';
 import 'package:flutter_demo/components/heading_text.dart';
 import 'package:flutter_demo/components/primary_button.dart';
 import 'package:flutter_demo/components/primary_text_field.dart';
@@ -7,13 +6,12 @@ import 'package:flutter_demo/components/text_last_clickable.dart';
 import 'package:flutter_demo/navigation/routes.dart';
 import 'package:flutter_demo/utils/text_utils.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({super.key});
+class SignIn extends StatelessWidget {
+  SignIn({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +27,8 @@ class SignUp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               HeadingText(
-                heading: "Sign Up",
-                subHeading: "Hello! let's join with us",
+                heading: "Welcome Back",
+                subHeading: "Hey! Good to see you again",
               ),
               const Expanded(
                 flex: 1,
@@ -40,6 +38,7 @@ class SignUp extends StatelessWidget {
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     PrimaryTextField(
                       placeholder: "Email",
@@ -65,21 +64,11 @@ class SignUp extends StatelessWidget {
                         return null;
                       },
                     ),
-                    PrimaryTextField(
-                      placeholder: "Confirm Password",
-                      prefixIcon: Icons.key,
-                      obscureText: true,
-                      visibilityIcon: true,
-                      textEditingController: confirmPasswordController,
-                      validator: (value) {
-                        if (passwordController.value.text != value) {
-                          return "password and confirm password not matched";
-                        }
-                        return null;
-                      },
-                    ),
-                    CheckboxSuffixText(
-                      suffixText: "I agree with Privacy Policy",
+                    const Text(
+                      "Forget Password?",
+                      style: TextStyle (
+                        color: Colors.blue,
+                      ),
                     ),
                   ],
                 ),
@@ -89,7 +78,7 @@ class SignUp extends StatelessWidget {
                 child: SizedBox(),
               ),
               PrimaryButton(
-                text: "Sign Up",
+                text: "Sign In",
                 onClick: () {
                   if (_formKey.currentState?.validate() ?? false) {}
                 },
@@ -98,10 +87,10 @@ class SignUp extends StatelessWidget {
                 height: 100,
                 alignment: Alignment.center,
                 child: TextLastClickable(
-                  text: "You already have an account? ",
-                  clickableText: "Sign In",
+                  text: "Don't have an account? ",
+                  clickableText: "Sign Up",
                   onClick: () {
-                    Navigator.pushNamed(context, Routes.signInScreen);
+                    Navigator.pushNamed(context, Routes.signUpScreen);
                   },
                 ),
               ),

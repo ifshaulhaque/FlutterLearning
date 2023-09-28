@@ -37,7 +37,9 @@ class GetStarted extends StatelessWidget {
                     PrimaryButton(
                       text: "Sign in",
                       isTextCapital: true,
-                      onClick: () {},
+                      onClick: () {
+                        Navigator.pushNamed(context, Routes.signInScreen);
+                      },
                     ),
                   ],
                 ),
