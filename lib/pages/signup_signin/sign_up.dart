@@ -31,62 +31,66 @@ class SignUp extends StatelessWidget {
                 heading: "Sign Up",
                 subHeading: "Hello! let's join with us",
               ),
-              Expanded(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      PrimaryTextField(
-                        placeholder: "Email",
-                        prefixIcon: Icons.email,
-                        textEditingController: emailController,
-                        validator: (value) {
-                          if (!TextUtils.isValidEmail(value)) {
-                            return "invalid Email Id";
-                          }
-                          return null;
-                        },
-                      ),
-                      PrimaryTextField(
-                        placeholder: "Password",
-                        prefixIcon: Icons.key,
-                        obscureText: true,
-                        visibilityIcon: true,
-                        textEditingController: passwordController,
-                        validator: (value) {
-                          if (value != null && value.length < 8) {
-                            return "minimum 8 digit required";
-                          }
-                          return null;
-                        },
-                      ),
-                      PrimaryTextField(
-                        placeholder: "Confirm Password",
-                        prefixIcon: Icons.key,
-                        obscureText: true,
-                        visibilityIcon: true,
-                        textEditingController: confirmPasswordController,
-                        validator: (value) {
-                          if (passwordController.value.text != value) {
-                            return "password and confirm password not matched";
-                          }
-                          return null;
-                        },
-                      ),
-                      CheckboxSuffixText(
-                        suffixText: "I agree with Privacy Policy",
-                      ),
-                    ],
-                  ),
+              const Expanded(
+                flex: 1,
+                child: SizedBox(),
+              ),
+              Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    PrimaryTextField(
+                      placeholder: "Email",
+                      prefixIcon: Icons.email,
+                      textEditingController: emailController,
+                      validator: (value) {
+                        if (!TextUtils.isValidEmail(value)) {
+                          return "invalid Email Id";
+                        }
+                        return null;
+                      },
+                    ),
+                    PrimaryTextField(
+                      placeholder: "Password",
+                      prefixIcon: Icons.key,
+                      obscureText: true,
+                      visibilityIcon: true,
+                      textEditingController: passwordController,
+                      validator: (value) {
+                        if (value != null && value.length < 8) {
+                          return "minimum 8 digit required";
+                        }
+                        return null;
+                      },
+                    ),
+                    PrimaryTextField(
+                      placeholder: "Confirm Password",
+                      prefixIcon: Icons.key,
+                      obscureText: true,
+                      visibilityIcon: true,
+                      textEditingController: confirmPasswordController,
+                      validator: (value) {
+                        if (passwordController.value.text != value) {
+                          return "password and confirm password not matched";
+                        }
+                        return null;
+                      },
+                    ),
+                    CheckboxSuffixText(
+                      suffixText: "I agree with Privacy Policy",
+                    ),
+                  ],
                 ),
+              ),
+              const Expanded(
+                flex: 1,
+                child: SizedBox(),
               ),
               PrimaryButton(
                 text: "Sign Up",
                 onClick: () {
-                  if (_formKey.currentState?.validate() ?? false) {
-
-                  }
+                  if (_formKey.currentState?.validate() ?? false) {}
                 },
               ),
               Container(
@@ -96,8 +100,8 @@ class SignUp extends StatelessWidget {
                   text: "You already have an account? ",
                   clickableText: "Sign In",
                   onClick: () {},
-                )
-              )
+                ),
+              ),
             ],
           ),
         ),
