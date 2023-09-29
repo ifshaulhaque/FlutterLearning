@@ -95,6 +95,7 @@ class SignIn extends StatelessWidget {
                 onClick: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     prefs.setBool(Constants.loginStatusKey, true);
+                    Navigator.pushNamed(context, Routes.homeScreen);
                   }
                 },
               ),

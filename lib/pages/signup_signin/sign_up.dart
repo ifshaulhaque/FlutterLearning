@@ -106,6 +106,7 @@ class SignUp extends StatelessWidget {
                     prefs.setString(Constants.emailKey, emailController.value.text);
                     prefs.setString(Constants.passwordKey, passwordController.value.text);
                     prefs.setBool(Constants.loginStatusKey, true);
+                    Navigator.pushNamed(context, Routes.homeScreen);
                   }
                 },
               ),
