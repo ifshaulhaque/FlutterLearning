@@ -4,16 +4,25 @@ import 'package:flutter_demo/components/heading_text.dart';
 import 'package:flutter_demo/components/primary_button.dart';
 import 'package:flutter_demo/components/primary_text_field.dart';
 import 'package:flutter_demo/components/text_last_clickable.dart';
+import 'package:flutter_demo/constants.dart';
 import 'package:flutter_demo/navigation/routes.dart';
 import 'package:flutter_demo/utils/text_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatelessWidget {
-  SignUp({super.key});
+  SignUp({super.key}) {
+    initializeSharedPreferences();
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  late final SharedPreferences prefs;
+
+  Future<void> initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +57,8 @@ class SignUp extends StatelessWidget {
                       validator: (value) {
                         if (!TextUtils.isValidEmail(value)) {
                           return "invalid Email Id";
+                        } else if (prefs.getString(Constants.emailKey) == value) {
+                          return "email already exist";
                         }
                         return null;
                       },
@@ -91,7 +102,11 @@ class SignUp extends StatelessWidget {
               PrimaryButton(
                 text: "Sign Up",
                 onClick: () {
-                  if (_formKey.currentState?.validate() ?? false) {}
+                  if (_formKey.currentState?.validate() ?? false) {
+                    prefs.setString(Constants.emailKey, emailController.value.text);
+                    prefs.setString(Constants.passwordKey, passwordController.value.text);
+                    prefs.setBool(Constants.loginStatusKey, true);
+                  }
                 },
               ),
               Container(
