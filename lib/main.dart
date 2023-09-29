@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: Routes.splashScreen,
       routes: {
-        Routes.splashScreen: (context) => const SplashScreen(),
+        Routes.splashScreen: (context) => SplashScreen(),
         Routes.getStartedScreen: (context) => const GetStarted(),
         Routes.signUpScreen: (context) => SignUp(),
         Routes.signInScreen: (context) => SignIn(),
