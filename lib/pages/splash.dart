@@ -18,9 +18,9 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 3), () {
       if (prefs.getBool(Constants.loginStatusKey) ?? false) {
-        Navigator.pushNamed(context, Routes.homeScreen);
+        Navigator.pushReplacementNamed(context, Routes.homeScreen);
       } else {
-        Navigator.pushNamed(context, Routes.getStartedScreen);
+        Navigator.pushReplacementNamed(context, Routes.getStartedScreen);
       }
     });
 

@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
           child: TextButton(
             onPressed: () {
               prefs.setBool(Constants.loginStatusKey, false);
-              Navigator.pushNamed(context, Routes.getStartedScreen);
+              Navigator.pushNamedAndRemoveUntil(context, Routes.getStartedScreen, (route) => route.settings.name == Routes.getStartedScreen);
             },
             child: const Text(
               "Logout",

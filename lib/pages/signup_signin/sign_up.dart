@@ -106,7 +106,7 @@ class SignUp extends StatelessWidget {
                     prefs.setString(Constants.emailKey, emailController.value.text);
                     prefs.setString(Constants.passwordKey, passwordController.value.text);
                     prefs.setBool(Constants.loginStatusKey, true);
-                    Navigator.pushNamed(context, Routes.homeScreen);
+                    Navigator.pushNamedAndRemoveUntil(context, Routes.homeScreen, (route) => false);
                   }
                 },
               ),
@@ -117,7 +117,7 @@ class SignUp extends StatelessWidget {
                   text: "You already have an account? ",
                   clickableText: "Sign In",
                   onClick: () {
-                    Navigator.pushNamed(context, Routes.signInScreen);
+                    Navigator.pushNamedAndRemoveUntil(context, Routes.signInScreen, (route) => route.settings.name == Routes.getStartedScreen);;
                   },
                 ),
               ),

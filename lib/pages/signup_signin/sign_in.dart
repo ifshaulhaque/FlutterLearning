@@ -95,7 +95,7 @@ class SignIn extends StatelessWidget {
                 onClick: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     prefs.setBool(Constants.loginStatusKey, true);
-                    Navigator.pushNamed(context, Routes.homeScreen);
+                    Navigator.pushNamedAndRemoveUntil(context, Routes.homeScreen, (route) => false);
                   }
                 },
               ),
@@ -106,7 +106,7 @@ class SignIn extends StatelessWidget {
                   text: "Don't have an account? ",
                   clickableText: "Sign Up",
                   onClick: () {
-                    Navigator.pushNamed(context, Routes.signUpScreen);
+                    Navigator.pushNamedAndRemoveUntil(context, Routes.signUpScreen, (route) => route.settings.name == Routes.getStartedScreen);
                   },
                 ),
               ),
