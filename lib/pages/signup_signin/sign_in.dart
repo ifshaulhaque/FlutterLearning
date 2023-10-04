@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/components/heading_text.dart';
 import 'package:flutter_demo/components/primary_button.dart';
-import 'package:flutter_demo/components/primary_text_field.dart';
+import 'package:flutter_demo/components/primary_text_field/primary_text_field.dart';
 import 'package:flutter_demo/components/text_last_clickable.dart';
 import 'package:flutter_demo/constants.dart';
 import 'package:flutter_demo/navigation/routes.dart';
